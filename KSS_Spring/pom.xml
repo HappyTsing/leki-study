@@ -12,6 +12,7 @@
         <module>Spring01</module>
         <module>Spring-constructor</module>
         <module>Spring-set-di</module>
+        <module>Spring-autowire</module>
     </modules>
     <dependencies>
         <dependency>

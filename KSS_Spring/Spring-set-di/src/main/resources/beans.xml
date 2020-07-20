@@ -6,7 +6,7 @@
     <bean id="address" class="com.wang.pojo.Address">
         <property name="address" value="浙江省嘉兴市"/>
     </bean>
-    <bean id="student" class="com.wang.pojo.Student" autowire="byName">
+    <bean id="student" class="com.wang.pojo.Student" >
         <property name="name" value="王乐卿"/>
         <property name="address" ref="address"/>
         <property name="books">
