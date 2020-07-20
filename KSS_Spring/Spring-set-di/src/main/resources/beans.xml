@@ -6,7 +6,7 @@
     <bean id="address" class="com.wang.pojo.Address">
         <property name="address" value="浙江省嘉兴市"/>
     </bean>
-    <bean id="student" class="com.wang.pojo.Student" autowire="">
+    <bean id="student" class="com.wang.pojo.Student" autowire="byName">
         <property name="name" value="王乐卿"/>
         <property name="address" ref="address"/>
         <property name="books">
@@ -39,5 +39,6 @@
         <property name="wife">
              <null/>
         </property>
+
     </bean>
 </beans>
