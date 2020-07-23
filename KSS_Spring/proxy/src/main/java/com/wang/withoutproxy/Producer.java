@@ -1,4 +1,4 @@
-package com.wang.sale_with_proxy;
+package com.wang.withoutproxy;
 
 /**
  * 生产者
