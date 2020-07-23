@@ -1,0 +1,26 @@
+## 各个模块的作用如下：
+- Spring01 简单测试了一下bean.xml（官方名字为：ApplicationContext.xml）
+- Spring-autowire 
+   - xml配置中的自动注入
+   - 使用注解的自动注入
+        - @Autowired 
+        - @Qualifier
+        - @Resource
+   
+- **IOC的DI（依赖注入）**
+   - Spring—constructor 构造器实现依赖注入
+   - Spring-set-di set方法实现依赖注入
+- Spring-annotation 使用注解实现Spring配置
+    - @Component 还有三个相同功能的（用于mvc架构分层）
+        - @Repository
+        - @Service
+        - @Controller
+    - @Value @PropertySource
+    - @Scope
+    - 自动注入同上**Spring-autowire** 
+- Spring-appconfig 使用java实现Spring配置（不需要ApplicationContext.xml文件）
+    - @Configuration
+    - @Bean
+    - @ComponentScan
+    - @Import
+- proxy 动态代理

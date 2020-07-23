@@ -1,4 +1,4 @@
-package com.wang.proxy;
+package com.wang.sale_without_proxy;
 
 public interface IProduce {
     /**
