@@ -52,9 +52,11 @@ public class Clint {
                         Float money = (Float) args[0];
                         //2. 判断当前方法是不是销售
                         if ("saleProduct".equals(method.getName())) {
+                            //代理抽成20%
                             retuenValue= method.invoke(producer,money*0.8f);
                         }
                         else{
+                            //代理抽成40%
                             retuenValue=method.invoke(producer,money*0.6f);
                         }
                         return retuenValue;

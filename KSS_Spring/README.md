@@ -9,7 +9,7 @@
    
 - **IOC的DI（依赖注入）**
    - Spring—constructor 构造器实现依赖注入
-   - Spring-set-di set方法实现依赖注入
+   - Spring-set-di set 方法实现依赖注入
 - Spring-annotation 使用注解实现Spring配置
     - @Component 还有三个相同功能的（用于mvc架构分层）
         - @Repository
