@@ -13,6 +13,8 @@
         <module>Spring-constructor</module>
         <module>Spring-set-di</module>
         <module>Spring-autowire</module>
+        <module>Spring-annotation</module>
+        <module>appconfig</module>
     </modules>
     <dependencies>
         <dependency>
