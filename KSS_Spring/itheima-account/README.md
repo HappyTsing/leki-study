@@ -1,4 +1,6 @@
-出现错误:无法解决，放弃！
+疑惑：为什么明明spring的bean设置ref的引用对象是对的，不过它老是想引用另一个奇怪位置的类！
+改了个名字之后就没问题了，玄学。
+改完一堆下划线错误后，最后有一个大bug，无法解决，放弃！
 > java.lang.IllegalStateException: Could not load CacheAwareContextLoaderDelegate [class org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
   
   	at org.springframework.test.context.BootstrapUtils.createCacheAwareContextLoaderDelegate(BootstrapUtils.java:103)
