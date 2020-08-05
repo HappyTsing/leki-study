@@ -4,8 +4,8 @@
 > java.lang.IllegalStateException: Could not load CacheAwareContextLoaderDelegate [class org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
   
   	at org.springframework.test.context.BootstrapUtils.createCacheAwareContextLoaderDelegate(BootstrapUtils.java:103)
-  	at org.springframework.test.context.BootstrapUtils.createBootstrapContext(BootstrapUtils.java:72)
-  	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:120)
+  	**at org.springframework.test.context.BootstrapUtils.createBootstrapContext(BootstrapUtils.java:72)
+  	at o**rg.springframework.test.context.TestContextManager.<init>(TestContextManager.java:120)
   	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTestContextManager(SpringJUnit4ClassRunner.java:151)
   	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:142)
   	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
