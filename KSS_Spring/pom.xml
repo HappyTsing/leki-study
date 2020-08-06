@@ -19,6 +19,7 @@
         <module>itheima-account</module>
         <module>Spring-itheima-aop-xml</module>
         <module>Spring-aop-xml-advice</module>
+        <module>Spring-jdbcTemplate</module>
     </modules>
     <dependencies>
         <dependency>

@@ -32,5 +32,6 @@
     - 切入点表达式的写法
     
 - Spring-aop-xml-advice 五个通知类型详解
+- Spring-jdbcTemplate 数据库操作
 - ~~itheima-account 无法运行~~ 
 
