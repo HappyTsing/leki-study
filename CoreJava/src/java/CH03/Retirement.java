@@ -9,14 +9,14 @@ public class Retirement {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("入职年龄");
-        int age_in = in.nextInt();
-        int sum=0,age_out=age_in;
+        int ageIn = in.nextInt();
+        int sum=0, ageOut =ageIn;
         while(sum < 100) {
             sum+=3;
-            age_out+=1;
+             ageOut +=1;
         }
 
-//        System.out.println("退休年龄："+age_out);
-        System.out.printf("退休年龄:%d",age_out);
+        System.out.println("退休年龄："+ ageOut );
+        System.out.printf("退休年龄:%d", ageOut );
     }
 }
