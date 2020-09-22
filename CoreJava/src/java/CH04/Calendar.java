@@ -4,6 +4,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * Date类和LocalDate类的简要使用
+ * 使用LocalDate类实现当月日历的输出
+ * @author QingHappy
+ */
 public class Calendar {
     public static void main(String[] args) {
         // 不要使用构造器来构造LocalDate类的对象，应该使用静态工厂方法，它会代替你使用构造器：

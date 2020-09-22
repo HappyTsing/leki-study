@@ -2,6 +2,11 @@ package CH04;
 
 import java.time.LocalDate;
 
+/**
+ * 面向对象初体验！
+ * 隐式参数和显式参数的概念
+ * @author QingHappy
+ */
 public class EmployeeTest {
     public static void main(String[] args) {
         Employee[] staff = new Employee[3];

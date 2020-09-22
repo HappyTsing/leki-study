@@ -1,5 +1,9 @@
 package CH04;
 
+/**
+ * 参数传递：java都是按值调用！
+ * @author QingHappy
+ */
 public class Param {
     public static void main(String[] args) {
         /**

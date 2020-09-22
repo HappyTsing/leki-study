@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * 计算退休年龄，假设一个人赚到100元就退休，每年赚3元
+ * @author QingHappy
  */
 public class Retirement {
     public static void main(String[] args) {
