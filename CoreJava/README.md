@@ -144,6 +144,14 @@ staff[0] = boss;
 
 当然，也可以使用this来调用当前类的方法，只不过可以省略，因此没必要使用this！
 
+**instanceof**
+
+语法：obj instanceof class
+用于检测左边的对象是否是右边的类的实例：  
+  
+1. 子类对象一定是父类的实例
+    
+2. 父类对象不是子类的实例          
 ### abstractClasses
 
 抽象类的简单体验：
@@ -167,3 +175,12 @@ staff[0] = boss;
             System.out.println(p.getName() + "," + p.getDescription());
         }
 ```
+### equals
+Obejcts：所有类的超类
+
+- 可以使用Object类型的变量引用任何类型的对象
+- Object类中常用于覆盖的方法
+    - equals() 
+    - toString()
+    - hashCode()
+ 
