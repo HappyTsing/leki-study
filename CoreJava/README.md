@@ -105,11 +105,6 @@ java中所有参数，包括对象参数，都是按值调用的。
 
 ## CH05 继承
 ### inheritance
-**Employee.java**
-
-**Manager.java**
-
-**ManagerTest.java**
 
 继承初体验！
 
@@ -140,3 +135,35 @@ staff[0] = boss;
 - final方法：该方法不能被子类覆盖重写，故可以确定x和f()
 - 构造器
 
+**super与this**
+
+迄今为止，super和this都分别有两种作用：
+
+- super  一是调用超类的方法，二是调用超类的构造器
+- this   一是指示隐式参数的引用，二是调用该类的其他构造器
+
+当然，也可以使用this来调用当前类的方法，只不过可以省略，因此没必要使用this！
+
+### abstractClasses
+
+抽象类的简单体验：
+
+1. 有一个或多个抽象方法的类本身必然是抽象的
+     
+2. 不含抽象方法，也可以将类声明为抽象类
+     
+3. 抽象类不能实例化
+
+可以使用抽象类的变量去引用具体子类的变量
+```java
+        var people = new Person[2];
+        people[0] = new Employee("王乐卿", 50000, 2000, 03, 30);
+        people[1] = new Student("宋雨童", "外国语学院");
+
+        /**
+         * 由于抽象类不能实例化，因此变量P永远不会引用Person对象！而是引用诸如Student、Employee具体子类的对象！
+         */
+        for (Person p : people) {
+            System.out.println(p.getName() + "," + p.getDescription());
+        }
+```
