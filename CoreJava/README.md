@@ -184,3 +184,26 @@ Obejcts：所有类的超类
     - toString()
     - hashCode()
  
+ 注意：当我们使用System.out.println(e)
+ 
+ 假设e是一个对象的引用
+ 
+ 那么实际上会自动调用System.out.println(e.toString)
+ 
+ 如果显示诸如：CH05.arrayList.Employee@4e50df2e
+ 
+ 其原因是因为e对象的类的实现中，没有覆盖toString方法，而使用了默认的Object类的toString方法！
+ 
+ ### arrayList
+ 
+ 泛型数组列表的声明：
+ ```java
+        //以下三种写法等价！
+        ArrayList<Employee> staff = new ArrayList<Employee>();
+        //使用var关键字，避免重复写类名
+        var staff1 = new ArrayList<Employee>();
+        //菱形语法，可省略右侧类型参数
+        ArrayList<Employee> staff2 = new ArrayList<>();
+```
+ 泛型数组列表的简单方法：add、set、get、remove
+ 
