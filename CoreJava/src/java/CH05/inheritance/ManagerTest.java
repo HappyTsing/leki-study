@@ -47,5 +47,20 @@ public class ManagerTest
       System.out.println("最终结论：若是父类对象变量引用子类对象，在使用该变量的方法时，会使用子类对象重写过的方法！即子类方法会覆盖超类中相同签名的方法");
       System.out.println("方法签名：方法的名+参数列表");
       double salary = 123;
+
+      System.out.println("-----------------------instanceof 测式-----------------------------------------------------------");
+      System.out.print("boss instanceof Employee:");
+      System.out.println(boss instanceof Employee);
+      System.out.print("boss instanceof Manager:");
+      System.out.println(boss instanceof Manager);
+
+
+      System.out.print("staff[2] instanceof Employee:");
+      System.out.println(staff[2] instanceof Employee);
+      System.out.print("staff[2] instanceof Manager:");
+      System.out.println(staff[2] instanceof Manager);
+
+      System.out.println("instanceof用于测试左边的对象是否是右边类的实例！子类对象一定是父类的实例，而父类对象不是子类的实例");
+
    }
 }
