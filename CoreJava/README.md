@@ -191,14 +191,14 @@ Obejcts：所有类的超类
 
 equals只用于对象，用于比较内存中的存储地址是否相同！
 ```java
-    //Object类中实现的equals，本本质上就是==
+    //Object类中实现的equals，本质上就是==
     public boolean equals(Object obj) {
         return (this == obj);
     }
 ```
-若是我们自己的类不对equals重写，那么当我们调用诸如e1.equals(e2)时，实际上就是在进行e1==e2！
+若是我们自己的类不对equals()方法进行重写，那么当我们调用诸如e1.equals(e2)时，实际上就是在进行e1==e2！
 
-当然，有些官方实现的类已经对equals进行了重写，此处以String类为例子
+当然，有些官方实现的类已经对equals进行了重写，此处以String类为例：
 ```java
     public boolean equals(Object anObject) {
         //同Object类，若是两个对象引用相同，即它们在内存中的存储地址相同，则返回true
@@ -241,9 +241,9 @@ equals只用于对象，用于比较内存中的存储地址是否相同！
  
  从此实现了运行时确定数组的大小！
  
- 然而存在一个问题：一旦确定了数组的大小，就不能在改变了！
+ 然而存在一个问题：一旦确定了数组的大小，就不能再改变了！
  
- 解决运行时动态更改数组：使用ArrayList类
+ **解决运行时动态更改数组：使用ArrayList类**
  
  泛型数组列表的声明：
  ```java
@@ -268,10 +268,17 @@ equals只用于对象，用于比较内存中的存储地址是否相同！
 
 前六类派生于公共的超类Number
 
-主要用于一些基本类型无法使用，必须传入对象的情况：如泛型数组类型：
+作用一：用于一些基本类型无法使用，必须传入对象的情况：如泛型数组类型
 ```java
 var list = new ArrayList<Integer>();
 ```
+作用二：作为存放一些基本方法的好地方
+```java
+String s = "100";
+int x = Integer.parseInt(s);
+//此处的parseInt()方法是静态方法，与Integer对象没有任何关系，Integer类是放置这个方法的好地方。
+```
+基本方法是**静态方法**
 
 ### varargs
 参数数量可变的方法
@@ -287,3 +294,53 @@ double... values
 
 Object... args
 > 相当于接收一个Object[]数组，表示可以接收任意数量的对象，如果**输入是整形或者其他基本类型**，那么会**自动装箱**为对象！
+
+### Enum
+可以为枚举类型增加构造器、方法和字段
+```java
+enum Size
+{
+    //SMALL的缩写（abbreviation）是S
+    SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL");
+    
+    //构造器
+    private Size(String abbreviation) { this.abbreviation = abbreviation; }
+    
+    //方法：得到缩写
+    public String getAbbreviation() { return abbreviation; }
+    
+    //字段：用于保存缩写
+    private String abbreviation;
+}
+
+```
+枚举类的三个常用方法：
+- toString：返回枚举常量名
+```java
+//以下两句等价
+System.out.println("size.toString="+size.toString());
+System.out.println("size=" + size);
+```
+- valueOf：toString方法的逆方法,将一个枚举变量设置为枚举常量元素
+```java
+Size s=Enum.valueOf(Size.class ,"SMALL");
+```
+- values：静态方法，返回一个包含全部枚举值的数组
+```java
+var values = Size.values();
+for (int i = 0; i < 4; i++) {
+    System.out.println(values[i].getAbbreviation());
+}
+```
+### 反射
+反射的内容十分之多，暂且也用不到，决定先跳过！
+
+### 继承的设计技巧
+1. **将公共操作和字段放在超类中**：如将name字段放在超类Person中，而不是子类Employee和Student类中
+2. **不要使用受保护的字段**：①子类集合是无限制的，任何人都能通过派生子类来访问protected实例字段，从而破坏了封装性；②同一个包中的类都可访问protected字段，不管它们是否是这个类的子类
+3. **使用继承实现”is-a“关系**：即extend
+4. **在覆盖方法时，不要改变预期的行为**
+5. **使用多态，而不要使用类型信息**
+6. **不要滥用反射**
+## CH06 接口、lambda表达式与内部类
+
