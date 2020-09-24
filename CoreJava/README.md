@@ -196,6 +196,20 @@ Obejcts：所有类的超类
  
  ### arrayList
  
+ C语言中，必须在编译时确定数组的大小
+ 
+ 即只能够：int a[2]
+ 
+ 不允许：  int n;  int a[n];
+ 
+ 而java允许在声明数组时使用变量：int n = 3;  var staff = new Employee[n];
+ 
+ 从此实现了运行时确定数组的大小！
+ 
+ 然而存在一个问题：一旦确定了数组的大小，就不能在改变了！
+ 
+ 解决运行时动态更改数组：使用ArrayList类
+ 
  泛型数组列表的声明：
  ```java
         //以下三种写法等价！
@@ -205,5 +219,36 @@ Obejcts：所有类的超类
         //菱形语法，可省略右侧类型参数
         ArrayList<Employee> staff2 = new ArrayList<>();
 ```
- 泛型数组列表的简单方法：add、set、get、remove
+ 泛型数组列表的常用方法：add、set、get、remove、size
  
+ 若是已经能够估计数组的大小，可以使用ensureCapacity方法
+ 
+ 例如：staff.ensureCapacity(100)，当然只是表示可能存100个，你可以少于，也可以超过，都没问题！
+ 
+ ### wrapper
+ 
+对象包装器与自动装箱
+
+包装器共有八类：Integer、Long、Short、Float、Double、Byte、Character、Boolean
+
+前六类派生于公共的超类Number
+
+主要用于一些基本类型无法使用，必须传入对象的情况：如泛型数组类型：
+```java
+var list = new ArrayList<Integer>();
+```
+
+### varargs
+参数数量可变的方法
+ 
+方法的最后一个参数设置为：类型... 数组名
+ 
+例如：
+
+double... values
+> 相当于接受一个double[]数组
+>
+> var values = double[]
+
+Object... args
+> 相当于接收一个Object[]数组，表示可以接收任意数量的对象，如果**输入是整形或者其他基本类型**，那么会**自动装箱**为对象！
