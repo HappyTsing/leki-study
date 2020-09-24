@@ -5,7 +5,7 @@ import CH05.arrayList.Employee;
 public class test {
     public static void main(String[] args) {
         /**
-         * ==进行比较时，分数组类型而定
+         * ==进行比较时，分数据类型而定
          *       1. 若比较双方为基本数据类型，比如int，则直接比较值
          *       2. 若比较双方是对象，则比较它们的在内存中的存储地址是否相同！
          */

@@ -182,8 +182,43 @@ Obejcts：所有类的超类
 - Object类中常用于覆盖的方法
     - equals() 
     - toString()
-    - hashCode()
- 
+    - hashCode()  根据对象的**存储地址**来生成对应的散列码
+- equals与==的探究
+
+==的作用根据数据类型而有所变化
+1. 若比较双方为基本数据类型，比如int，则直接比较值
+2. 若比较双方是对象，则比较它们的在内存中的存储地址是否相同！
+
+equals只用于对象，用于比较内存中的存储地址是否相同！
+```java
+    //Object类中实现的equals，本本质上就是==
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+```
+若是我们自己的类不对equals重写，那么当我们调用诸如e1.equals(e2)时，实际上就是在进行e1==e2！
+
+当然，有些官方实现的类已经对equals进行了重写，此处以String类为例子
+```java
+    public boolean equals(Object anObject) {
+        //同Object类，若是两个对象引用相同，即它们在内存中的存储地址相同，则返回true
+        if (this == anObject) {
+            return true;
+        }
+        //若是两个String对象的值相同，也返回true！
+        //注意：两个分别new出来的对象的存储地址一定是不同的！可以通过hashCode函数查看！
+        if (anObject instanceof String) {
+            String aString = (String)anObject;
+            if (!COMPACT_STRINGS || this.coder == aString.coder) {
+                return StringLatin1.equals(value, aString.value);
+            }
+        }
+        return false;
+    }
+
+```
+
+
  注意：当我们使用System.out.println(e)
  
  假设e是一个对象的引用
