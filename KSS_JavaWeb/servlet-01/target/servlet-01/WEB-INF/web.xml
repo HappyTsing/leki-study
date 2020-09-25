@@ -45,4 +45,8 @@
         <servlet-name>sessiondemo1</servlet-name>
         <url-pattern>/sd1</url-pattern>
     </servlet-mapping>
+<!--设置session为十五分钟后自动失效-->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 </web-app>

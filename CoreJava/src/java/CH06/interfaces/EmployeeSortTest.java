@@ -1,6 +1,7 @@
 package CH06.interfaces;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * @author QingHappy
@@ -19,5 +20,6 @@ public class EmployeeSortTest {
             System.out.println(e.toString());
 
         }
+
     }
 }

@@ -16,8 +16,8 @@ public class Employee implements Comparable<Employee> {
     public double getSalary() {
         return salary;
     }
-
     public void raiseSalary(double byPercent) {
+
         double raise = salary * byPercent / 100;
         salary = +raise;
     }
@@ -35,4 +35,5 @@ public class Employee implements Comparable<Employee> {
                 ", salary=" + salary +
                 '}';
     }
+
 }
