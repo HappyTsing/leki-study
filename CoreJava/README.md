@@ -171,16 +171,16 @@ staff[0] = boss;
 
 可以使用抽象类的变量去引用具体子类的变量
 ```java
-        var people = new Person[2];
-        people[0] = new Employee("王乐卿", 50000, 2000, 03, 30);
-        people[1] = new Student("宋雨童", "外国语学院");
+var people = new Person[2];
+people[0] = new Employee("王乐卿", 50000, 2000, 03, 30);
+people[1] = new Student("宋雨童", "外国语学院");
 
-        /**
-         * 由于抽象类不能实例化，因此变量P永远不会引用Person对象！而是引用诸如Student、Employee具体子类的对象！
-         */
-        for (Person p : people) {
-            System.out.println(p.getName() + "," + p.getDescription());
-        }
+/**
+ * 由于抽象类不能实例化，因此变量P永远不会引用Person对象！而是引用诸如Student、Employee具体子类的对象！
+ */
+for (Person p : people) {
+    System.out.println(p.getName() + "," + p.getDescription());
+}
 ```
 ### equals
 Obejcts：所有类的超类
@@ -198,30 +198,30 @@ Obejcts：所有类的超类
 
 equals只用于对象，用于比较内存中的存储地址是否相同！
 ```java
-    //Object类中实现的equals，本质上就是==
-    public boolean equals(Object obj) {
-        return (this == obj);
-    }
+//Object类中实现的equals，本质上就是==
+public boolean equals(Object obj) {
+    return (this == obj);
+}
 ```
 若是我们自己的类不对equals()方法进行重写，那么当我们调用诸如e1.equals(e2)时，实际上就是在进行e1==e2！
 
 当然，有些官方实现的类已经对equals进行了重写，此处以String类为例：
 ```java
-    public boolean equals(Object anObject) {
-        //同Object类，若是两个对象引用相同，即它们在内存中的存储地址相同，则返回true
-        if (this == anObject) {
-            return true;
-        }
-        //若是两个String对象的值相同，也返回true！
-        //注意：两个分别new出来的对象的存储地址一定是不同的！可以通过hashCode函数查看！
-        if (anObject instanceof String) {
-            String aString = (String)anObject;
-            if (!COMPACT_STRINGS || this.coder == aString.coder) {
-                return StringLatin1.equals(value, aString.value);
-            }
-        }
-        return false;
+public boolean equals(Object anObject) {
+    //同Object类，若是两个对象引用相同，即它们在内存中的存储地址相同，则返回true
+    if (this == anObject) {
+        return true;
     }
+    //若是两个String对象的值相同，也返回true！
+    //注意：两个分别new出来的对象的存储地址一定是不同的！可以通过hashCode函数查看！
+    if (anObject instanceof String) {
+        String aString = (String)anObject;
+        if (!COMPACT_STRINGS || this.coder == aString.coder) {
+            return StringLatin1.equals(value, aString.value);
+        }
+    }
+    return false;
+}
 
 ```
 
@@ -254,12 +254,12 @@ equals只用于对象，用于比较内存中的存储地址是否相同！
  
  泛型数组列表的声明：
  ```java
-        //以下三种写法等价！
-        ArrayList<Employee> staff = new ArrayList<Employee>();
-        //使用var关键字，避免重复写类名
-        var staff1 = new ArrayList<Employee>();
-        //菱形语法，可省略右侧类型参数
-        ArrayList<Employee> staff2 = new ArrayList<>();
+//以下三种写法等价！
+ArrayList<Employee> staff = new ArrayList<Employee>();
+//使用var关键字，避免重复写类名
+var staff1 = new ArrayList<Employee>();
+//菱形语法，可省略右侧类型参数
+ArrayList<Employee> staff2 = new ArrayList<>();
 ```
  泛型数组列表的常用方法：add、set、get、remove、size
  
@@ -402,16 +402,17 @@ Object提供了一个clone()方法，是浅拷贝！
 
 **简介**：lambda表达式就是一段代码块，形式诸如`（参数类型1 参数名1，参数类型2 参数名2，...) -> { 表达式 }` 使用lambda表达式的主要目的是**延迟执行**。
 
-规则：
+**规则**：
 1. 没有参数，仍需要提供()，即`() -> { 表达式 }`
 2. 如果根据上下文可推导出参数类型，则可以省略参数类型，即`（参数名1，参数名2，...) -> { 表达式 }` 
 3. 如果只有一个参数，且参数类型可推导，则可以省略(),即`参数名 -> { 表达式 }`
+4. 若是表达式只有一句，则可以省略{}
 
 无需指定返回类型，lambda的返回类型总是会由上下文推到得出！
 
 **函数式接口**：**只有一个抽象方法的接口**，可以有其他非抽象方法，只要保证抽象方法只有一个即可！
 
-lambda表达式所能做的只是转化为函数式接口，`java.util.function`中定义了许多通用的函数式接口，我们可以把一些lambda表达式保存在这些接口类型的变量中
+**lambda表达式所能做的只是转化为函数式接口**，`java.util.function`中定义了许多通用的函数式接口，我们可以把一些lambda表达式保存在这些接口类型的变量中：
 
 ```java
 BiFunction<String,String,Integer> comp = (first,second) -> first.length() - second.length();
@@ -421,10 +422,11 @@ BiFunction<String,String,Integer> comp = (first,second) -> first.length() - seco
 有一些类的方法的参数是函数式接口，如ArrayList类中的removeIf方法，其参数是`java.util.function`中的接口Predicate，于是通过上述的原理，这个接口参数就是让我们传入一个lambda表达式的！
 
 ```java
+//如果数组列表中存在null值，则删除！
 list.removeIf(e - > e==null);
 ```
 
-**方法引用**：
+**方法引用**
 
 **构造器引用**
 
@@ -432,3 +434,102 @@ list.removeIf(e - > e==null);
 
 
 ### 三、内部类
+**InnerClass、anonymousInnerClass、staticInnerClass**
+
+**简介**：内部类是定义在另一个类中的类，可以对同一个包中的其它类隐藏、且可以访问其外围类的数据，包括私有的数据。
+
+**内部类的特殊语法规则**：
+1. 在外围类的作用域之外，可以通过`OuterClass.InnerClass`来引用内部类。
+2. 内部类不仅能访问外围类的字段，还可以访问局部变量。当前仅当该局部变量为**最终变量**，其原理是内部类会在局部变量消失之前，复制一份局部变量，该变量不会再改变，保存下来，因此需要局部变量是最终变量。
+
+
+**局部内部类**：当一个内部类仅仅在某一个方法内使用，那么，可以在一个方法内局部的定义这个类。
+
+**局部内部类的规则**
+1. 声明局部类时不能有访问说明符，即public或private
+2.  局部内对外部世界完全隐藏，除了其所在的方法，其余任何地方都不知道它的存在，哪怕是其方法所在的类也不知道局部内部类的存在。
+
+**匿名内部类**：局部内部类的进一步简化，当你使用内部类只是为了创建这个类的一个对象时，**不需要为类指定名字**！
+
+```java
+//匿名内部类语法
+new SuperType（construction parameters)
+{
+    inner class methods and data
+}
+```
+`SuperType`可以是接口，那么内部类就要实现这个接口
+```java
+// ActionListener是一个接口，这一整句话的意思是：创建一个类的新对象，这个类实现了该接口！
+var listener = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("时间：" + Instant.ofEpochMilli(e.getWhen()));
+        if (beep) {
+            Toolkit.getDefaultToolkit().beep();
+        }
+    }
+};
+```
+`SuperType`也可以是一个类，那么内部类就要扩展这个类
+
+**匿名内部类的规则**
+
+1. 匿名内部类没有构造器，因为构造器与类名相同， 匿名内部类无类名
+2. 匿名内部类的习惯用法是实现**事件监听器和其他回调**，不过如今**lambda表达式**有更好的表现！
+
+**匿名内部类和构造类对象的比较**
+
+如果构造参数列表的结束小括号后面跟一个开始大括号，就是在定义匿名内部类。
+```java
+//构造Person类的新对象
+var queen = new Person("Marry");
+
+//构造扩展了Person类的匿名内部类的对象
+var prince = new Person("Jack"){
+    inner class methods and data
+}
+```
+
+**lambda表达式和匿名内部类的比较**
+
+前文已经提及，如今实现事件监听器和其他回调时，lambda会更简洁！
+```java
+//使用匿名内部类实现start方法
+public void start(int interval,boolean beep) {
+
+    var listener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("时间：" + Instant.ofEpochMilli(e.getWhen()));
+            if (beep) {
+                Toolkit.getDefaultToolkit().beep();
+            }
+        }
+    };
+    var timer = new Timer(interval, listener);
+    timer.start();
+}
+```
+
+```java
+//使用lambda实现start方法
+public void start(int interval,boolean beep) {
+    
+    var timer = new Timer(interval,e -> {
+        System.out.println("时间：" + Instant.ofEpochMilli(e.getWhen()));
+        if (beep) {
+            Toolkit.getDefaultToolkit().beep();
+        }
+    });
+    timer.start();
+}
+```
+
+**静态内部类**：有时候为了把一个类隐藏在另外一个类的内部，并不需要内部类有外围类对象的一个引用，为此可以将**内部类声明为static**，这样就不会生成那个引用。
+
+**静态内部类的规则**
+1. 当且仅当内部类不需要访问外围类对象时，才使用静态内部类！
+2. 静态内部类可以有静态字段和方法，而非static的内部类，在外部类加载的时候，并不会加载它，所以它里面不能有静态变量或者静态方法。
+
+详细使用参见代码：`StaticInnerClass.java`
