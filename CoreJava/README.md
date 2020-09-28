@@ -294,14 +294,15 @@ int x = Integer.parseInt(s);
  
 例如：
 
-double... values
-> 相当于接受一个double[]数组
->
-> var values = double[]
+**double... values**
 
-Object... args
-> 相当于接收一个Object[]数组，表示可以接收任意数量的对象，如果**输入是整形或者其他基本类型**，那么会**自动装箱**为对象！
+相当于接受一个double[]数组：var values = double[]
 
+**Object... args**
+
+相当于接收一个Object[]数组，表示可以接收任意数量的对象，如果**输入是整形或者其他基本类型**，那么会**自动装箱**为对象！
+
+传入该参数的效果和传入`Object args[]`效果相同
 ### Enum
 可以为枚举类型增加构造器、方法和字段
 ```java
@@ -533,3 +534,35 @@ public void start(int interval,boolean beep) {
 2. 静态内部类可以有静态字段和方法，而非static的内部类，在外部类加载的时候，并不会加载它，所以它里面不能有静态变量或者静态方法。
 
 详细使用参见代码：`StaticInnerClass.java`
+
+### 代理
+**proxy、proxyInnerClass、proxyLambda、proxylambda2**
+
+分别为：代理的普通实现、内部类实现、lambda表达式实现及代理对象类实现多个接口的情况！
+
+代理分为两种：静态代理和动态代理
+
+**静态代理**是我们手动创建一个类，该类是对你所代理类的扩展，它除了有所代理类的功能，还会有一些额外功能。
+
+比如房屋中介，它代理了卖方，除了卖方的卖房子的功能，还有自己的扩展功能：收取中介费用！从此我们不再需要联系卖方，直接和代理中介交互即可！
+
+**静态代理的缺陷**：每一个接口（类）都需要自己的代理类，且代理类和被代理类有着大量的重复代码！
+
+引入动态代理，基于反射原理实现使用一个代理类完成全部的代理功能！
+
+详见：`proxy.TraceHandler.java`
+
+1. 被代理对象作为参数`target`传入
+2. 通过`targetObject.getClass().getClassLoader()`获取ClassLoader对象
+3. 通过`targetObject.getClass().getInterfaces()`获取它实现的所有接口
+4. 然后将`target`包装到实现了`InvocationHandler`接口的**调用处理器**`TraceHandler`对象中
+5. 通过`newProxyInstance`函数我们就获得了参数对象`target`的动态代理对象`proxy`
+6. 使用`((接口类型 proxy)).function()`，调用被代理类实现的多个接口中的指定接口的指定方法！同时，在调用该方法的同时，还会实现`invoke`中的代理增强方法，实现代理！
+
+显然，**调用处理器TraceHandler是可以复用的**，当我们传入不同类型的被代理对象类，这个类实现了一个或者多个接口，由于不清楚传入的类的类型是什么，因此也不知道它实现了什么接口！
+
+我们需要做的，仅仅是将被代理类作为参数`target`传入调用处理器`TraceHandler`即可！于是每次使用该对象时，都会调用代理的特有功能，即`InvocationHandler`接口的方法`invoke()`
+
+注：代理类实在程序运行过程中动态创建的，然而，一旦被创建，就变成常规类，与其它类无任何区别！
+
+## CH07 异常、断言、日志

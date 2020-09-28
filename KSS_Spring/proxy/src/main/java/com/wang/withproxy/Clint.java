@@ -33,7 +33,8 @@ public class Clint {
          *
          */
 
-        IProduce proxyProducer = (IProduce)Proxy.newProxyInstance(producer.getClass().getClassLoader(),
+        IProduce proxyProducer = (IProduce)Proxy.newProxyInstance(
+                producer.getClass().getClassLoader(),
                 producer.getClass().getInterfaces(),
                 new InvocationHandler() {
                     /**
