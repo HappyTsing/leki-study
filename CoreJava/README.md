@@ -63,7 +63,7 @@ public class System
 **静态方法：**
 
 静态方法即为没有隐式参数的方法，它不是在对象上执行的方法，我们直接用类名.方法名调用！
-如：Math.pow()
+如：`Math.pow()`
 
 使用静态方法的两种情况：
 1. 方法不需要访问对象状态，因为它所需要的所有参数都通过显式参数提供。
@@ -84,8 +84,7 @@ java中所有参数，包括对象参数，都是按值调用的。
 ### Constructor.java
 展示了为数据字段赋值的三种方法：
  1. 在声明中赋值
- 2. 在构造器中设置值
-    > 可以在一个构造器中使用this.()来调用另一个构造器函数
+ 2. 在构造器中设置值：可以在一个构造器中使用`this.()`来调用另一个构造器函数
  3. 初始化块
     - 静态初始化块
     - 对象初始化块
@@ -356,9 +355,9 @@ for (int i = 0; i < 4; i++) {
 **comparator、interfaces、timer**
 
 **一些知识点**
-1. 接口中的所有方法都自动是public方法、所有字段都是public static final
-2. 接口中绝对不会有实例字段，但可以提供多个**静态方法**（Java 8之后），还可以使用**default修饰符提供一个默认方法**！
-3. 不能使用new运算符实例化接口，但是可以声明接口的变量，该变量必须引用实现了该接口的类对象
+1. 接口中的所有方法都自动是public方法、所有字段都是`public static final`
+2. 接口中绝对不会有实例字段，但可以提供多个**静态方法**（Java 8之后），还可以使用**`default`修饰符提供一个默认方法**！
+3. 不能使用`new`运算符实例化接口，但是可以声明接口的变量，该变量必须引用实现了该接口的类对象
 4. 每个类只能有一个超类，但却可以实现多个接口，这就是有了抽象类还引入接口的原因
 5. **超类优先**：超类提供了一个具体方法，接口的具有相同签名的默认方法会被忽略
 6. **覆盖解决冲突**：继承的两个接口提供了两个相同签名的默认方法，为了解决冲突，必须重写方法以覆盖解决冲突！
@@ -367,30 +366,30 @@ for (int i = 0; i < 4; i++) {
 
 排序的两种方式：
 
-1. **Comparable<T>接口**
+1. **`Comparable<T>接口`**
 
-    类可以实现Comparable接口，实现接口中的CompareTo方法，若有一个存储该类的数组，则调用**Arrays.sort(数组名)实现排序**！
+    类可以实现`Comparable<T>`接口，实现接口中的`CompareTo()`方法，若有一个存储该类的数组，则调用`Arrays.sort(数组名)`实现排序！
     
-    **缺陷**：有时候我们需要对同一个类进行多种不同的排序，而每一个类只能实现一次compareTo方法！
+    **缺陷**：有时候我们需要对同一个类进行多种不同的排序，而每一个类只能实现一次`compareTo()`方法！
 
-    况且，如String类，它自身实现了comparable<String>接口中的compareTo方法，即根据字典顺序比较字符串，且我们是无法对该类进行修改的。
+    况且，如String类，它自身实现了`comparable<String>`接口中的`compareTo()`方法，即根据字典顺序比较字符串，且我们是无法对该类进行修改的。
     
-    那么如果我们想根据字符串长度进行比较该如何实现呢？这就需要引入Comparator<T>接口
+    那么如果我们想根据字符串长度进行比较该如何实现呢？这就需要引入`Comparator<T>`接口
 
-2. **Comparator<T>接口**
+2. **`Comparator<T>接口`**
 
-   首先需要一个**比较器类**，该类实现Comparator<T>接口，实现接口中的compare方法
+   首先需要一个**比较器类**，该类实现`Comparator<T>`接口，实现接口中的`compare()`方法
    
    其次一个普通的对象类，假设该类为String类，现在有一个String类组成的数组
    
-   调用**Arrays(数组名,比较器)实现排序**
+   调用`Arrays(数组名,比较器)`实现排序
    
-   其中比较器是比较器类的实例，可以通过**Arrays(数组名,new 比较器类名())实现排序**
+   其中比较器是比较器类的实例，可以通过`Arrays(数组名,new 比较器类名())`实现排序
    
 
 **接口与回调**：指定某个特定事件发生时应该采取的动作！详见timer文件夹下的代码！
 
-**对象克隆**：Cloneable接口，这个接口指示一个类提供了一个安全的clone方法
+**对象克隆**：Cloneable接口，这个接口指示一个类提供了一个安全的clone()方法
 
 Object提供了一个clone()方法，是浅拷贝！
 
@@ -550,10 +549,10 @@ public void start(int interval,boolean beep) {
 
 引入动态代理，基于反射原理实现使用一个代理类完成全部的代理功能！
 
-详见：`proxy.TraceHandler.java`
+详见：`CH06.proxy.TraceHandler.java`
 
 1. 被代理对象作为参数`target`传入
-2. 通过`targetObject.getClass().getClassLoader()`获取ClassLoader对象
+2. 通过`targetObject.getClass().getClassLoader()`获取`ClassLoader`对象
 3. 通过`targetObject.getClass().getInterfaces()`获取它实现的所有接口
 4. 然后将`target`包装到实现了`InvocationHandler`接口的**调用处理器**`TraceHandler`对象中
 5. 通过`newProxyInstance`函数我们就获得了参数对象`target`的动态代理对象`proxy`
