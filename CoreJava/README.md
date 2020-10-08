@@ -356,7 +356,7 @@ for (int i = 0; i < 4; i++) {
 
 **一些知识点**
 1. 接口中的所有方法都自动是public方法、所有字段都是`public static final`
-2. 接口中绝对不会有实例字段，但可以提供多个**静态方法**（Java 8之后），还可以使用**`default`修饰符提供一个默认方法**！
+2. 接口中绝对不会有实例字段，但可以提供多个**静态方法**（Java 8之后），还可以使用`default`修饰符提供一个**默认方法**！
 3. 不能使用`new`运算符实例化接口，但是可以声明接口的变量，该变量必须引用实现了该接口的类对象
 4. 每个类只能有一个超类，但却可以实现多个接口，这就是有了抽象类还引入接口的原因
 5. **超类优先**：超类提供了一个具体方法，接口的具有相同签名的默认方法会被忽略
@@ -491,7 +491,7 @@ var prince = new Person("Jack"){
 }
 ```
 
-**lambda表达式和匿名内部类的比较**
+**匿名内部类和lambda表达式的比较**
 
 前文已经提及，如今实现事件监听器和其他回调时，lambda会更简洁！
 ```java
@@ -547,7 +547,7 @@ public void start(int interval,boolean beep) {
 
 **静态代理的缺陷**：每一个接口（类）都需要自己的代理类，且代理类和被代理类有着大量的重复代码！
 
-引入动态代理，基于反射原理实现使用一个代理类完成全部的代理功能！
+**动态代理**，基于反射原理实现使用一个代理类完成全部的代理功能！
 
 详见：`CH06.proxy.TraceHandler.java`
 
@@ -565,3 +565,60 @@ public void start(int interval,boolean beep) {
 注：代理类实在程序运行过程中动态创建的，然而，一旦被创建，就变成常规类，与其它类无任何区别！
 
 ## CH07 异常、断言、日志
+
+**一、异常**
+```shell 
+Throwable
+    --Error
+
+    --Exception
+         --IOException
+         --RuntimeException
+```
+Error：Java运行时系统的内部错误和资源耗尽错误
+RuntimeException：
+- 错误的强制类型转换
+- 数组访问越界
+- 访问null指针
+
+**派生于Error类或RuntimeException类的所有异常称为`非检查型异常`，所有其它的异常称为`检查型异常`**
+
+**处理异常的两种方式**：抛出和捕获
+
+**1. 抛出异常**
+
+关键字：throws、throw
+
+原则：一个方法必须声明所有可能抛出的`检查型异常`，`非检查型异常`要么在你的控制之外（Error），要么是一开始就应该避免（RuntimeException）
+
+注意：子类抛出的异常必须比父类抛出的异常更特殊，父类不抛出异常，则子类也不能抛出异常
+
+例如：父类抛出Exception，那么子类只能抛出诸如IOException，而不能抛出Throwable类型的异常
+
+**2. 捕获异常**
+
+关键字：try、catch、finally
+
+注意：捕获异常会花费大量的时间，因此使用异常的基本规则是，只在异常情况下使用异常。
+
+**二、断言**
+
+已知异常的捕获检查会降低程序运行速度，且大量的检查代码会最终保留在程序中，造成混乱。
+
+断言机制允许在测式期间向代码中插入一些检查，而在生产代码中会**自动删除**这些检查。
+
+关键字：assert
+
+语法：`assert condition;` `assert condition : expression;`
+
+上述两个语句都会计算condition条件，若结果为false，则抛出一个AssertionError
+
+第二个语句的expression是一个字符串，当condition为false时，会抛出AssertionError：expression的内容
+
+**如何在idea中启动和禁用断言**
+
+默认情况下断言是**禁用**的！
+
+1. Edit configurations，进入debug configuration
+2. 在VM options中输入-ea或者-enableassertions启用，输入-da或者-disableassertions
+
