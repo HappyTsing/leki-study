@@ -75,11 +75,12 @@ main方法是一个静态方法，它不对任何对象进行操作，事实上�
 java中所有参数，包括对象参数，都是按值调用的。
 但是在C语言中，可以使用&符号进行引用传递
 当我们传一个对象时，其实传的是对象引用的副本
-> 假设harry = new Employee()
->
-> function(harry){}
->
-> 此时传入方法的其实是一个对象引用的副本，它和harry都指向同一个实例对象！
+```java
+harry = new Employee();
+function(harry){};
+//此时传入方法的其实是一个对象引用的副本，它和harry都指向同一个实例对象！
+```
+
 
 ### Constructor.java
 展示了为数据字段赋值的三种方法：
@@ -566,7 +567,7 @@ public void start(int interval,boolean beep) {
 
 ## CH07 异常、断言、日志
 
-**一、异常**
+### 一、异常
 ```shell 
 Throwable
     --Error
@@ -601,7 +602,7 @@ RuntimeException：
 
 注意：捕获异常会花费大量的时间，因此使用异常的基本规则是，只在异常情况下使用异常。
 
-**二、断言**
+### 二、断言
 
 已知异常的捕获检查会降低程序运行速度，且大量的检查代码会最终保留在程序中，造成混乱。
 
@@ -622,3 +623,13 @@ RuntimeException：
 1. Edit configurations，进入debug configuration
 2. 在VM options中输入-ea或者-enableassertions启用，输入-da或者-disableassertions
 
+### 三、日志
+书上的代码过于复杂，未完待续！
+
+日志内容输出在`System.err`上，对比`System.err.println`和`System.out.println`可以发现，err是红色字，而out是白色字。
+
+日志的主要功能是帮助观察程序行为，一般我们会在程序中使用`System.out.println`来帮助我们直观的显示，然而弊端是后期需要删除所有的print语句，这无疑是麻烦的，于是引入日志功能来解决该问题！
+
+## CH08 泛型程序设计
+
+## CH09 集合
