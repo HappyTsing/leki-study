@@ -630,6 +630,14 @@ RuntimeException：
 
 日志的主要功能是帮助观察程序行为，一般我们会在程序中使用`System.out.println`来帮助我们直观的显示，然而弊端是后期需要删除所有的print语句，这无疑是麻烦的，于是引入日志功能来解决该问题！
 
+一般直接使用这句即可：`Logger.getGlobal().info();`
+
+也可以创建自己的日志再输出：
+
+`Logger myLogger = Logger.getLogger("myLogger");`
+
+`myLogger.info();`
+
 ## CH08 泛型程序设计
 
 ## CH09 集合
