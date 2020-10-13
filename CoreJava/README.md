@@ -343,6 +343,45 @@ for (int i = 0; i < 4; i++) {
 ### 反射
 反射的内容十分之多，暂且也用不到，决定先跳过！
 
+2020.10.13更新
+
+能够分析类能力的程序称为反射，主要用于：
+
+- 在运行时分析类的能力
+- 在运行时检查对象，例如，编写一个适用于所有类的toString方法
+- 实现泛型数组操作代码
+- 利用Method对象，得到目标类的私有方法等
+
+**Class类**
+
+Java运行时系统始终为所有对象维护一个运行时类型标记，这个信息会跟踪每个对象所属的类。可以用一个特殊的Java类访问这些信息，保存这些信息的类名为Class。
+
+**获取Class类的三种方法**
+
+Ⅰ. 已知具体类，直接通过TargetClass.class获得Class对象
+```java
+Class cl = Random.class;
+Class cl = Employee.class;
+```
+
+Ⅱ. Object类中的getClass()方法，该方法返回一个Class类型的实例。instance.getClass()
+
+```java
+Employee e = new Employee();
+Class cl = e.getClass();
+```
+
+Ⅲ. Class类中的静态方法forName()，获得类名对应的Class对象
+
+```java
+String className = "java.util.Random";
+Class cl = Class.forName(className);
+```
+
+**利用反射分析类**
+
+`java.lang.reflect`包中由三个类：Field、Method、Constructor，分别用于描述类的字段、方法、构造器。
+
 ### 继承的设计技巧
 1. **将公共操作和字段放在超类中**：如将name字段放在超类Person中，而不是子类Employee和Student类中
 2. **不要使用受保护的字段**：①子类集合是无限制的，任何人都能通过派生子类来访问protected实例字段，从而破坏了封装性；②同一个包中的类都可访问protected字段，不管它们是否是这个类的子类
@@ -553,8 +592,8 @@ public void start(int interval,boolean beep) {
 详见：`CH06.proxy.TraceHandler.java`
 
 1. 被代理对象作为参数`target`传入
-2. 通过`targetObject.getClass().getClassLoader()`获取`ClassLoader`对象
-3. 通过`targetObject.getClass().getInterfaces()`获取它实现的所有接口
+2. 通过`employee.getClass().getClassLoader()`获取`ClassLoader`对象
+3. 通过`employee.getClass().getInterfaces()`获取它实现的所有接口
 4. 然后将`target`包装到实现了`InvocationHandler`接口的**调用处理器**`TraceHandler`对象中
 5. 通过`newProxyInstance`函数我们就获得了参数对象`target`的动态代理对象`proxy`
 6. 使用`((接口类型 proxy)).function()`，调用被代理类实现的多个接口中的指定接口的指定方法！同时，在调用该方法的同时，还会实现`invoke`中的代理增强方法，实现代理！
