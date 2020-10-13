@@ -1,4 +1,4 @@
-package Collections;
+package ToolsClass.Collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,23 +21,23 @@ public class CollectionsSearchTest {
         System.out.println("原始数组:");
         System.out.println(arrayList);
 
-        System.out.println("Collections.max(arrayList):");
+        System.out.println("ToolsClass.Collections.max(arrayList):");
         System.out.println(Collections.max(arrayList));
 
-        System.out.println("Collections.min(arrayList):");
+        System.out.println("ToolsClass.Collections.min(arrayList):");
         System.out.println(Collections.min(arrayList));
 
-        System.out.println("Collections.replaceAll(arrayList, 3, -3):");
+        System.out.println("ToolsClass.Collections.replaceAll(arrayList, 3, -3):");
         Collections.replaceAll(arrayList, 3, -3);
         System.out.println(arrayList);
 
-        System.out.println("Collections.frequency(arrayList, -3):");
+        System.out.println("ToolsClass.Collections.frequency(arrayList, -3):");
         System.out.println(Collections.frequency(arrayList, -3));
 
-        System.out.println("Collections.indexOfSubList(arrayList, arrayList2):");
+        System.out.println("ToolsClass.Collections.indexOfSubList(arrayList, arrayList2):");
         System.out.println(Collections.indexOfSubList(arrayList, arrayList2));
 
-        System.out.println("Collections.binarySearch(arrayList, -9):");
+        System.out.println("ToolsClass.Collections.binarySearch(arrayList, -9):");
         // 对List进行二分查找，返回索引，List必须是有序的
         Collections.sort(arrayList);
         System.out.println(arrayList);

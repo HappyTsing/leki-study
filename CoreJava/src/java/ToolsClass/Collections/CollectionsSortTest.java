@@ -1,4 +1,4 @@
-package Collections;
+package ToolsClass.Collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,29 +20,29 @@ public class CollectionsSortTest {
         // void reverse(List list)：反转
         //将原始数组的顺序反转
         Collections.reverse(arrayList);
-        System.out.println("Collections.reverse(arrayList):");
+        System.out.println("ToolsClass.Collections.reverse(arrayList):");
         System.out.println(arrayList);
 
         //void rotate(List list, int distance)：旋转
         // 当distance为正数时，将list的后distance个元素整体移到前面。
         // 当distance为负数时，将list的前distance个元素整体移到后面。
         Collections.rotate(arrayList, 3);
-        System.out.println("Collections.rotate(arrayList, 3):");
+        System.out.println("ToolsClass.Collections.rotate(arrayList, 3):");
         System.out.println(arrayList);
 
         // void sort(List list),按自然排序的升序排序
         Collections.sort(arrayList);
-        System.out.println("Collections.sort(arrayList):");
+        System.out.println("ToolsClass.Collections.sort(arrayList):");
         System.out.println(arrayList);
 
         // void shuffle(List list),随机排序
         Collections.shuffle(arrayList);
-        System.out.println("Collections.shuffle(arrayList):");
+        System.out.println("ToolsClass.Collections.shuffle(arrayList):");
         System.out.println(arrayList);
 
         // void swap(List list, int i , int j),交换两个索引位置的元素
         Collections.swap(arrayList, 2, 5);
-        System.out.println("Collections.swap(arrayList, 2, 5):");
+        System.out.println("ToolsClass.Collections.swap(arrayList, 2, 5):");
         System.out.println(arrayList);
 
         // 定制排序的用法

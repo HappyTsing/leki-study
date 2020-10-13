@@ -369,7 +369,7 @@ for (int i = 0; i < 4; i++) {
 
 1. **`Comparable<T>接口`**
 
-    类可以实现`Comparable<T>`接口，实现接口中的`CompareTo()`方法，若有一个存储该类的数组，则调用`Arrays.sort(数组名)`实现排序！
+    类可以实现`Comparable<T>`接口，实现接口中的`CompareTo()`方法，若有一个存储该类的数组，则调用`ToolsClass.Arrays.sort(数组名)`实现排序！
     
     **缺陷**：有时候我们需要对同一个类进行多种不同的排序，而每一个类只能实现一次`compareTo()`方法！
 
@@ -383,9 +383,9 @@ for (int i = 0; i < 4; i++) {
    
    其次一个普通的对象类，假设该类为String类，现在有一个String类组成的数组
    
-   调用`Arrays(数组名,比较器)`实现排序
+   调用`ToolsClass.Arrays(数组名,比较器)`实现排序
    
-   其中比较器是比较器类的实例，可以通过`Arrays(数组名,new 比较器类名())`实现排序
+   其中比较器是比较器类的实例，可以通过`ToolsClass.Arrays(数组名,new 比较器类名())`实现排序
    
 
 **接口与回调**：指定某个特定事件发生时应该采取的动作！详见timer文件夹下的代码！
@@ -644,19 +644,31 @@ RuntimeException：
 
 ## CH12 并发
 
-## Collections 工具类的常用方法
+## ToolsClass 工具类Collections和Arrays
 
-### 一、排序
+### Collections
+#### 一、排序
 ```java
-void reverse(List list)//反转
-void shuffle(List list)//随机排序
-void sort(List list)//按自然排序的升序排序
-void sort(List list, Comparator c)//定制排序，由Comparator控制排序逻辑
-void swap(List list, int i , int j)//交换两个索引位置的元素
-void rotate(List list, int distance)/*旋转。当distance为正数时，将list后distance个元素整体移到前面。
-                                           当distance为负数时，将list的前distance个元素整体移到后面。*/
+//反转
+void reverse(List list)
+
+//随机排序
+void shuffle(List list)
+
+//按自然排序的升序排序
+void sort(List list)
+
+//定制排序，由Comparator控制排序逻辑
+void sort(List list, Comparator c)
+
+//交换两个索引位置的元素
+void swap(List list, int i , int j)
+
+//旋转: 当distance为正数时，将list的后distance个元素整体移到前面。
+//       distance为负数时，将list的前distance个元素整体移到后面。
+void rotate(List list, int distance)
 ```
-### 二、查找、替换
+#### 二、查找、替换
 ```java
 //对List进行二分查找，返回索引，注意List必须是有序的
 int binarySearch(List list, Object key)
@@ -679,5 +691,23 @@ int indexOfSubList(List list, List target)
 //用新元素替换旧元素
 boolean replaceAll(List list, Object oldVal, Object newVal)
 ```
-### 三、 同步控制
+#### 三、 同步控制
 不推荐，需要线程安全的集合类型时请考虑使用 JUC 包下的并发集合
+
+### Arrays
+
+排序 : sort()
+
+查找 : binarySearch()
+
+比较: equals()
+
+填充 : fill()
+
+转列表: asList()
+
+转字符串 : toString()
+
+复制: copyOf()
+
+[具体代码](https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/basic/Arrays,CollectionsCommonMethods.md)
