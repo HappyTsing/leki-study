@@ -21,7 +21,17 @@ public class refectTest {
         Employee e1 = (Employee) cl.getConstructor().newInstance(); //构造无参对象
         Employee e2 = (Employee)cl.getConstructor(int.class, String.class).newInstance(200, "职员"); //构造有参对象
 
-        //通过Class类调用任意方法
+        /**
+         * 通过Class类调用任意方法
+         *   通过getDeclaredMethod()或getMethod()方法，得到Method方法m
+         *                  参数一：方法名
+         *                  参数二：方法的参数的类，有几个参数，就写几个
+         *   使用invoke()调用该方法
+         *                  参数一：隐式参数，一般来说，我们调用Employee对象e的方法getName(String s1,String s2)是这样的，e.getName(s)，此时e就是隐式参数，s1、s2是显式参数
+         *                  参数二：显示参数
+         */
+        Method m1 = cl.getDeclaredMethod("publicMethodEmployee", String.class);
+        String s = (String)m1.invoke(e,"sss");
 
 
         /**

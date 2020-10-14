@@ -382,6 +382,59 @@ Class cl = Class.forName(className);
 
 `java.lang.reflect`包中由三个类：Field、Method、Constructor，分别用于描述类的字段、方法、构造器。
 
+
+**一、 Field 字段**
+  
+1.getType() 返回字段类型，Class类型接收
+
+2.Modifier.isPublic/isPrivate/isFinal/isStatic() 静态方法，判断字段是否是Public等，其参数是f.getModifier()
+
+**二、 Method 方法**
+  
+1.getReturnType()     返回方法返回值类型，Class类型接收
+
+2.getParameterType()  返回方法的参数类型，是一个数组，使用Class[]接收
+
+**三、 Constructor 构造器**
+  
+1.getParameterType()   返回构造器的参数类型，是一个数组，使用Class[]接收
+
+**通用方法**
+1.getName()         获得字段、方法、构造器的名字
+
+2.getModifier()     返回一个整数，用不同的0/1位描述所使用的修饰符，通过Modifier.toString静态方法将修饰符转化为字符串
+
+**有何区别**
+getFields、getMethods、getConstructors：返回对应对象的数组，这些对象对应于这个类或其超累的公共字段、方法、构造器，即只包括public，但是包括父类！
+
+getDeclaredFields、getDeclaredMethods、getDeclaredConstructors  ：返回对应对象的数组，这些对象仅对应这个类的所有字段、方法、构造器。即既包括public，也包括private
+
+**通过Class类实例化对象**
+```java
+Employee e1 = (Employee) cl.getConstructor().newInstance(); //构造无参对象
+Employee e2 = (Employee)cl.getConstructor(int.class, String.class).newInstance(200, "职员"); //构造有参对象
+```        
+         
+**通过Class类使用方法**
+```java
+Method m1 = cl.getDeclaredMethod("publicMethodEmployee", String.class);
+String s = (String)m1.invoke(e,"sss");
+```
+
+1. 通过getDeclaredMethod()或getMethod()方法，得到Method方法m
+
+    参数一：方法名
+    
+    参数二：方法的参数的类，有几个参数，就写几个
+    
+2. 使用invoke()调用该方法
+
+    参数一：隐式参数，一般来说，我们调用Employee对象e的方法getName(String s1,String s2)是这样的，e.getName(s)，此时e就是隐式参数，s1、s2是显式参数
+    
+    参数二：显示参数
+
+
+
 ### 继承的设计技巧
 1. **将公共操作和字段放在超类中**：如将name字段放在超类Person中，而不是子类Employee和Student类中
 2. **不要使用受保护的字段**：①子类集合是无限制的，任何人都能通过派生子类来访问protected实例字段，从而破坏了封装性；②同一个包中的类都可访问protected字段，不管它们是否是这个类的子类
