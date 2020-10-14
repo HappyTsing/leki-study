@@ -419,8 +419,17 @@ Employee e2 = (Employee)cl.getConstructor(int.class, String.class).newInstance(2
          
 **通过Class类使用方法**
 ```java
-Method m1 = cl.getDeclaredMethod("publicMethodEmployee", String.class);
-String s = (String)m1.invoke(e,"sss");
+//Employee对象的方法
+public final String publicMethodEmployee(String s) {
+    System.out.println("This is Employee publicMethod:"+s);
+    return s;
+}
+
+//main函数中使用反射
+Class cl = Employee.class;
+Employee e = (Employee) cl.getConstructor().newInstance();
+Method m = cl.getDeclaredMethod("publicMethodEmployee", String.class);
+String s = (String)m1.invoke(e,"This is a String");
 ```
 
 1. 通过getDeclaredMethod()或getMethod()方法，得到Method方法m
