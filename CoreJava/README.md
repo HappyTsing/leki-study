@@ -383,31 +383,33 @@ Class cl = Class.forName(className);
 `java.lang.reflect`包中由三个类：Field、Method、Constructor，分别用于描述类的字段、方法、构造器。
 
 
-**一、 Field 字段**
+**Ⅰ. Field 字段**
   
-1.getType() 返回字段类型，Class类型接收
+- getType() 返回字段类型，Class类型接收
 
-2.Modifier.isPublic/isPrivate/isFinal/isStatic() 静态方法，判断字段是否是Public等，其参数是f.getModifier()
+- Modifier.isPublic/isPrivate/isFinal/isStatic() 静态方法，判断字段是否是Public等，其参数是f.getModifier()
 
-**二、 Method 方法**
+**Ⅱ. Method 方法**
   
-1.getReturnType()     返回方法返回值类型，Class类型接收
+- getReturnType()     返回方法返回值类型，Class类型接收
 
-2.getParameterType()  返回方法的参数类型，是一个数组，使用Class[]接收
+- getParameterType()  返回方法的参数类型，是一个数组，使用Class[]接收
 
-**三、 Constructor 构造器**
+**Ⅲ. Constructor 构造器**
   
-1.getParameterType()   返回构造器的参数类型，是一个数组，使用Class[]接收
+- getParameterType()   返回构造器的参数类型，是一个数组，使用Class[]接收
 
-**通用方法**
-1.getName()         获得字段、方法、构造器的名字
+**Ⅳ. 通用方法**
+- getName()         获得字段、方法、构造器的名字
 
-2.getModifier()     返回一个整数，用不同的0/1位描述所使用的修饰符，通过Modifier.toString静态方法将修饰符转化为字符串
+- getModifier()     返回一个整数，用不同的0/1位描述所使用的修饰符，通过Modifier.toString静态方法将修饰符转化为字符串
 
-**有何区别**
-getFields、getMethods、getConstructors：返回对应对象的数组，这些对象对应于这个类或其超累的公共字段、方法、构造器，即只包括public，但是包括父类！
+**Ⅴ. 有何区别**
 
-getDeclaredFields、getDeclaredMethods、getDeclaredConstructors  ：返回对应对象的数组，这些对象仅对应这个类的所有字段、方法、构造器。即既包括public，也包括private
+- getFields、getMethods、getConstructors：返回对应对象的数组，这些对象对应于这个类或其超累的公共字段、方法、构造器，即只包括public，但是包括父类！
+
+- getDeclaredFields、getDeclaredMethods、getDeclaredConstructors  ：返回对应对象的数组，这些对象仅对应这个类的所有字段、方法、构造器。即既包括public，也包括private
+
 
 **通过Class类实例化对象**
 ```java
