@@ -21,6 +21,9 @@ public class Bank {
             accounts = new double[n];
             Arrays.fill(accounts, initialBalance);
             bankLock = new ReentrantLock();
+            /**
+             * 设置一个条件对象
+             */
             sufficientFunds = bankLock.newCondition();
         }
 

@@ -4,7 +4,7 @@ package CH12.synchReentrantLock;
 /**
  * @author QingHappy
  */
-public class synchBankTest {
+public class SynchBankTest {
 
     public static final int NACCOUNTS = 100;
     public static final double INITIAL_BALANCE = 1000;
