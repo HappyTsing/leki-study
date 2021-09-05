@@ -87,8 +87,8 @@ function(harry){};
  1. 在声明中赋值
  2. 在构造器中设置值：可以在一个构造器中使用`this.()`来调用另一个构造器函数
  3. 初始化块
-    - 静态初始化块
-    - 对象初始化块
+    - 静态初始化块：只有在类加载的时候初始化一次。
+    - 对象初始化块：每次调用构造函数都会运行。
 
 默认数据初始化为：
 - 数值：0
@@ -99,7 +99,7 @@ function(harry){};
 2. 一定要对数据进行初始化，不要依赖于默认的数据初始化！
 3. 不要在类中使用过多的基本类型，即要学会使用对象来替换基本类型！
 4. 不是所有的字段都需要set/get方法，比如有些字段，如出生日期，不需要set方法，因为一旦初始化，不会再改变！
-5. 分解有过多指责的类，即如果一个复杂的类可以分解为两个更加简单的类，那么就应该那么做！
+5. 分解有过多职责的类，即如果一个复杂的类可以分解为两个更加简单的类，那么就应该那么做！
 6. 类名和方法名要能够体现它们的职责
 7. 优先使用不可变的类
 
@@ -406,7 +406,7 @@ Class cl = Class.forName(className);
 
 **Ⅴ. 有何区别**
 
-- getFields、getMethods、getConstructors：返回对应对象的数组，这些对象对应于这个类或其超累的公共字段、方法、构造器，即只包括public，但是包括父类！
+- getFields、getMethods、getConstructors：返回对应对象的数组，这些对象对应于这个类或其超类的公共字段、方法、构造器，即只包括public，但是包括父类！
 
 - getDeclaredFields、getDeclaredMethods、getDeclaredConstructors  ：返回对应对象的数组，这些对象仅对应这个类的所有字段、方法、构造器。即既包括public，也包括private
 
@@ -688,6 +688,7 @@ Throwable
          --RuntimeException
 ```
 Error：Java运行时系统的内部错误和资源耗尽错误
+
 RuntimeException：
 - 错误的强制类型转换
 - 数组访问越界
@@ -721,7 +722,9 @@ RuntimeException：
 
 关键字：assert
 
-语法：`assert condition;` `assert condition : expression;`
+语法：
+- `assert condition;`
+- `assert condition : expression;`
 
 上述两个语句都会计算condition条件，若结果为false，则抛出一个AssertionError
 

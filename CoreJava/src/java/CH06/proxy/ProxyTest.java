@@ -63,7 +63,6 @@ class TraceHandler implements InvocationHandler {
      * 本次实现的invoke方法会打印所调用的方法的名字和参数
      */
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
         System.out.print(target+"." + method.getName() + "(");
         if (args != null) {
             for (int i = 0; i < args.length; i++) {

@@ -40,16 +40,18 @@ class Student {
     /**
      * 初始化字段方法二
      * 使用初始化块机制，当构造这个类的对象时，这些初始化块就会被执行！
-     *   1. 对象初始化块
-     *   2. 静态初始化块
+     *   1. 对象初始化块：每次调用构造函数时都会运行
+     *   2. 静态初始化块：只有在类第一次加载的时候运行
      */
     static
     {
+//        System.out.println("静态初始化块运行");
         var generator = new Random();
         nextId = generator.nextInt(10000);
     }
 
     {
+//        System.out.println("对象初始化块运行");
         id = nextId;
         nextId++;
     }

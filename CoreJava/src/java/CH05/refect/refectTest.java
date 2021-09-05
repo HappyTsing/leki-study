@@ -19,7 +19,7 @@ public class refectTest {
 
         //通过Class类实例化对象
         Employee e1 = (Employee) cl.getConstructor().newInstance(); //构造无参对象
-        Employee e2 = (Employee)cl.getConstructor(int.class, String.class).newInstance(200, "职员"); //构造有参对象
+        Employee e2 = (Employee) cl.getConstructor(int.class, String.class).newInstance(200, "职员"); //构造有参对象
 
         /**
          * 通过Class类调用任意方法

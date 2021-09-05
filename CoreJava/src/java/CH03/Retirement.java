@@ -14,7 +14,7 @@ public class Retirement {
         int sum=0, ageOut =ageIn;
         while(sum < 100) {
             sum+=3;
-             ageOut +=1;
+            ageOut +=1;
         }
 
         System.out.println("退休年龄："+ ageOut );

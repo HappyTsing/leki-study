@@ -1,6 +1,8 @@
 package CH06.anonymousInnerClass;
 
 
+import CH05.abstractClasses.Person;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

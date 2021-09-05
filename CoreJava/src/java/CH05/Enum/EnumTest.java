@@ -13,7 +13,7 @@ public class EnumTest
         System.out.print("Enter a size: (SMALL, MEDIUM, LARGE, EXTRA_LARGE) ");
         String input = in.next().toUpperCase();
 
-        //valueOf把size变量设置为Size.imput的内容，如Size.SMALL
+        //valueOf把size变量设置为Size.input的内容，如Size.SMALL
         Size size = Enum.valueOf(Size.class, input);
 
         //以下两句等价
